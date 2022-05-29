@@ -11,6 +11,7 @@ function LogList(props) { // Add props as parameter.
         <Log
           whenLogClicked = { props.onLogSelection }
           birds={log.birds}
+          view={log.view}
           location={log.location}
           date={log.date}
           id={log.id}

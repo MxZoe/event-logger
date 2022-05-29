@@ -6,7 +6,7 @@ import ReusableForm from "./ReusableForm";
 function NewLogForm(props){
   function handleNewLogFormSubmission(event) {
     event.preventDefault();
-    props.onNewLogCreation({names: event.target.birds.value, location: event.target.location.value, issue: event.target.date.value, id: v4()});
+    props.onNewLogCreation({birds: event.target.birds.value, location: event.target.location.value, date: event.target.date.value, view: 1, id: v4()});
   }
   return (
     <React.Fragment>

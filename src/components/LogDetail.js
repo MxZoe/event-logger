@@ -7,8 +7,12 @@ function LogDetail(props){
   return (
     <React.Fragment>
       <h1>Log Detail</h1>
-      <h3>{log.location}, {log.date} {log.birds}</h3>
+      <h3>Views: {log.view}</h3>
+      <h3>{log.location}</h3> 
+      <h3>{log.date}</h3>
+      <h3>{log.birds}</h3>
       <button onClick={ props.onClickingEdit }>Update Log</button>
+      <button onClick={ props.onClickingIncreaseViews }>Increase views</button>
       <button onClick={()=> onClickingDelete(log.id) }>Delete Log</button> { /* new code */ }
       <hr/>
     </React.Fragment>

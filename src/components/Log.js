@@ -6,6 +6,7 @@ function Log(props){
     <React.Fragment>
       <div onClick = {() => props.whenLogClicked(props.id)}>
         { /* We add a div with an onClick function. Don't forget to close out the div below! */}
+        <h3>Views: {props.view}</h3>
         <h3>{props.location}, {props.date}: {props.birds}</h3>
         <hr/>
       </div>
@@ -17,6 +18,7 @@ Log.propTypes = {
   birds: PropTypes.string,
   location: PropTypes.string,
   date: PropTypes.string,
+  view: PropTypes.number,
   id: PropTypes.string, // new PropType
   whenLogClicked: PropTypes.func // new PropType
 };
