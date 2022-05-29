@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function LogDetail(props){
-  const { log, onClickingDelete } = props; //new code
+  const { log, onClickingDelete, onClickingIncrease } = props; //new code
 
   return (
     <React.Fragment>
@@ -12,8 +12,8 @@ function LogDetail(props){
       <h3>{log.date}</h3>
       <h3>{log.birds}</h3>
       <button onClick={ props.onClickingEdit }>Update Log</button>
-      <button onClick={ props.onClickingIncreaseViews }>Increase views</button>
-      <button onClick={()=> onClickingDelete(log.id) }>Delete Log</button> { /* new code */ }
+      <button onClick={ ()=> onClickingIncrease(log) }>Increase views</button>
+      <button onClick={()=> onClickingDelete(log.id) }>Delete Log</button> 
       <hr/>
     </React.Fragment>
   );
@@ -22,7 +22,8 @@ function LogDetail(props){
 LogDetail.propTypes = {
   log: PropTypes.object,
   onClickingDelete: PropTypes.func ,
-  onClickingEdit: PropTypes.func// new code
+  onClickingEdit: PropTypes.func,
+  onClickingIncrease: PropTypes.func
 };
 
 

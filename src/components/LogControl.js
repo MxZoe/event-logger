@@ -17,13 +17,21 @@ class LogControl extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
-  handleIncreaseViews = (id) => {
-    const selectedLog = this.state.mainLogList.filter(log => log.id === id)[0];
-    this.setState({selectedLog: selectedLog},
-                  {increase: true});
-    const currentView = selectedLog.view;
-    const increasedView = currentView + 1;
-    selectedLog.setState({view: increasedView});      
+  handleIncreaseClick = () => {
+    this.setState({increase: true})
+  }
+
+  handleIncreaseViews = (logToIncrease) => {
+    const editedMainLogList = this.state.mainLogList
+    .filter(log => log.id !== this.state.selectedLog.id)
+    .concat(logToIncrease);   
+    logToIncrease.view++; 
+    console.log(logToIncrease.view) 
+    this.setState({
+      mainLogList: editedMainLogList,
+      editing: false,
+      selectedLog: null
+    });   
   }
   
   handleEditClick = () => {
@@ -79,15 +87,16 @@ class LogControl extends React.Component {
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.increase){
-      currentlyVisibleState = <LogDetail log={this.state.selectedLog} onClickingIncreaseViews = {this.handleIncreaseViews} />
-    }
-    else if (this.state.editing ) {      
+    // if (this.state.increase){
+    //   currentlyVisibleState = <LogDetail log={this.state.selectedLog} onClickingIncrease = {this.handleIncreaseViews} />
+    // }
+    // else
+     if (this.state.editing ) {      
       currentlyVisibleState = <EditLogForm log = {this.state.selectedLog} onEditLog = {this.handleEditingLogInList} />
       buttonText = "Return to Event Log List";
     }
     else if (this.state.selectedLog != null) {
-      currentlyVisibleState = <LogDetail log = {this.state.selectedLog} onClickingDelete = {this.handleDeletingLog} onClickingEdit = {this.handleEditClick} />
+      currentlyVisibleState = <LogDetail log = {this.state.selectedLog} onClickingDelete = {this.handleDeletingLog} onClickingEdit = {this.handleEditClick} onClickingIncrease = {this.handleIncreaseViews}/>
       buttonText = "Return to Event Log List";
     }
     else if (this.state.formVisibleOnPage) {
